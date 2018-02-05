@@ -7,7 +7,7 @@ but should provide generic support to just about any chip that
 supports the SPI protocol.
 
 However, adding support for your specific chip can greatly
-improve the speed.  See the difference between the "std" and "qio"
+improve the speed.  See the differences between the "std" and "qio"
 lines in the sample [results](RESULTS.md).
 
 To use, just add the "extflash" component to your components directory
