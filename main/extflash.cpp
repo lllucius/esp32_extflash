@@ -241,12 +241,12 @@ extern "C" void app_main(void *)
     printf("       Bus     Bus  Queue  Block  Block               \n");
     printf("Proto  Cycles  Mhz   Size   Size  Count   Secs    MB/s\n");
 
-//    READ_TEST(ExtFlash,     "std",  "1-1-1");
-//    READ_TEST(wb_w25q_dual, "dual", "1-1-2");
-//    READ_TEST(wb_w25q_dio,  "dio",  "1-2-2");
+    READ_TEST(ExtFlash,     "std",  "1-1-1");
+    READ_TEST(wb_w25q_dual, "dual", "1-1-2");
+    READ_TEST(wb_w25q_dio,  "dio",  "1-2-2");
     READ_TEST(wb_w25q_quad, "quad", "1-1-4");
-//    READ_TEST(wb_w25q_qio,  "qio",  "1-4-4");
-//    READ_TEST(wb_w25q_qpi,  "qpi",  "4-4-4");
+    READ_TEST(wb_w25q_qio,  "qio",  "1-4-4");
+    READ_TEST(wb_w25q_qpi,  "qpi",  "4-4-4");
 
 #endif
 
