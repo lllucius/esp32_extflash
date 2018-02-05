@@ -36,8 +36,8 @@
 #define PIN_SPI_SCK     GPIO_NUM_18     // PIN 6 - CLK - CLK
 #define PIN_SPI_SS      GPIO_NUM_5      // PIN 1 - /CS - /CS
 
-#define ENABLE_READ_TEST    0
-#define ENABLE_WRITE_TEST   1
+#define ENABLE_READ_TEST    1
+#define ENABLE_WRITE_TEST   0
 
 #if ENABLE_READ_TEST
 
