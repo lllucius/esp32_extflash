@@ -498,9 +498,15 @@ void ExtFlash::wait_for_device_idle()
 {
     wait_for_command_completion();
 
+    int i = 0;
     while (read_status_register1() & sr1_wip)
     {
-        asm volatile ("nop");
+        i++;
+        if (i == 1000)
+        {
+            i = 0;
+            vTaskDelay(1);
+        }
     }
 }
 
