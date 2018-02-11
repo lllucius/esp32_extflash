@@ -708,7 +708,7 @@ esp_err_t ExtFlash::write(size_t addr, const void *src, size_t size)
     ESP_LOGD(TAG, "%s - addr=0x%08x size=%d", __func__, addr, size);
 
     uint8_t *bytes = (uint8_t *) src;
-    size_t len = pagesize;
+    size_t len = pagesize - (addr % pagesize);
 
     while (size > 0)
     {
