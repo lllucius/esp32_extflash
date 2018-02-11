@@ -59,6 +59,7 @@ void read_test(ExtFlash & flash, const char *name, const char *cycles)
                 .speed_mhz = (int8_t) mhz,
                 .dma_channel = 1,
                 .queue_size = (int8_t) qs,
+                .max_dma_size = 8192,
                 .sector_size = 0,
                 .capacity = 0
             };

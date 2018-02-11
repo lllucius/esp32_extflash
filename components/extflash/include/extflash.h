@@ -44,6 +44,7 @@ typedef struct
     int8_t speed_mhz;           // ex. 10, 20, 40, 80
     int8_t dma_channel;         // must be 1 or 2
     int8_t queue_size;          // size of transaction queue, 1 - n
+    int    max_dma_size;        // larger = faster, smaller = less memory, 0 = default
     size_t sector_size;         // sector size or 0 for detection
     size_t capacity;            // number of bytes on flash or 0 for detection
 } ext_flash_config_t;

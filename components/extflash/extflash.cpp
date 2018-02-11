@@ -92,7 +92,7 @@ esp_err_t ExtFlash::init(const ext_flash_config_t *config)
         .sclk_io_num = cfg.sck_io_num,
         .quadwp_io_num = cfg.wp_io_num,
         .quadhd_io_num = cfg.hd_io_num,
-        .max_transfer_sz = SPI_MAX_DMA_LEN
+        .max_transfer_sz = cfg.max_dma_size ? cfg.max_dma_size : SPI_MAX_DMA_LEN
     };
 
     spi_device_interface_config_t devcfg =
@@ -599,7 +599,7 @@ esp_err_t ExtFlash::read_nocrm(uint8_t inst, uint8_t dummy, size_t addr, void *d
     ESP_LOGD(TAG, "%s - inst=0x%02x dummy=%d addr=0x%08x size=%d", __func__, inst, dummy, addr, size);
 
     uint8_t *bytes = (uint8_t *) dest;
-    size_t len = SPI_MAX_DMA_LEN;
+    size_t len = cfg.max_dma_size;
 
     while (size > 0)
     {
@@ -625,7 +625,7 @@ esp_err_t ExtFlash::read_crm(uint8_t inst, uint8_t on, uint8_t off, uint8_t dumm
     ESP_LOGD(TAG, "%s - inst=0x%02x on=0x%02x off=0x%02x dummy=%d addr=0x%08x size=%d", __func__, inst, on, off, dummy, addr, size);
 
     uint8_t *bytes = (uint8_t *) dest;
-    size_t len = SPI_MAX_DMA_LEN;
+    size_t len = cfg.max_dma_size;
     uint8_t mode = on;
 
     while (size > 0)
