@@ -128,6 +128,7 @@ void write_test(ExtFlash & flash, const char *name, const char *cycles)
         .speed_mhz = 40,
         .dma_channel = 1,
         .queue_size = 2,
+        .max_dma_size = 8192,
         .sector_size = 0,
         .capacity = 0
     };
@@ -217,6 +218,30 @@ void write_test(ExtFlash & flash, const char *name, const char *cycles)
         if (addr >= cap)
         {
             printf("erase/write/verify successfully tested %d sectors\n", sectors);
+        }
+
+        // Test unaligned write
+        memset(wbuf, 2, sector_sz);
+        wbuf[0] = 1;
+        wbuf[sector_sz - 1] = 3;
+
+        flash.erase_sector(0);
+        flash.erase_sector(1);
+        flash.write(1, wbuf, sector_sz);
+        flash.read(0, wbuf, sector_sz);
+        flash.read(sector_sz, rbuf, sector_sz);
+        if (wbuf[0] != 0xff ||
+            wbuf[1] != 1 ||
+            wbuf[2] != 2 ||
+            wbuf[sector_sz - 1] != 2 ||
+            rbuf[0] != 3 ||
+            rbuf[1] != 0xff)
+        {
+            printf("               unaliged write failed\n");
+        }
+        else
+        {
+            printf("               unaliged write successful\n");
         }
 
         free(wbuf);
